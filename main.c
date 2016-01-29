@@ -6,7 +6,7 @@
 /*   By: guiricha <guiricha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/26 14:48:40 by guiricha          #+#    #+#             */
-/*   Updated: 2016/01/28 18:38:24 by guiricha         ###   ########.fr       */
+/*   Updated: 2016/01/29 14:46:26 by guiricha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,14 @@ int main(int argc, char **argv)
 			return (-1);
 		while((test = get_next_line(fd, &line)) == 1)
 		{
+			ft_putnbr(test);
 			if (line)
 			{
 				ft_putstr(line);
 				ft_putchar('\n');
 			}
 		}
+			ft_putnbr(test);
 		if (line)
 		{
 			ft_putstr(line);
@@ -42,7 +44,7 @@ int main(int argc, char **argv)
 	else if (argc == 1)
 	{
 		fd = 1;
-		while((test = get_next_line(fd, &line)))
+		while((test = get_next_line(fd, &line)) == 1)
 		{
 			ft_putnbr(test);
 			if (line)
