@@ -6,7 +6,7 @@
 /*   By: guiricha <guiricha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 16:16:56 by guiricha          #+#    #+#             */
-/*   Updated: 2016/01/28 22:03:11 by guiricha         ###   ########.fr       */
+/*   Updated: 2016/01/28 19:07:26 by guiricha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,11 @@ int	read_buf(int const fd, t_stock *d)
 int	handle_i(t_ints *v, t_stock *d, char **line)
 {
 	char	*tmp;
-
 	if (v->i)
 	{
 		tmp = *line;
 		if (!(*line = (char *)malloc(sizeof(char) * (v->size + v->i + 1))))
-			return (0);
+			return (-1);
 		if (v->size)
 			ft_memcpy(*line, tmp, v->size);
 		ft_strncpy(*line + v->size, d->buff + d->ib, (size_t)v->i);
@@ -59,9 +58,9 @@ int	gnl_do(int const fd, char **line, t_stock *d)
 {
 	char	*tmp;
 	t_ints	v;
-
 	v.size = 0;
 	v.ret = 42;
+
 	tmp = NULL;
 	while (v.ret == 42)
 	{
@@ -73,8 +72,27 @@ int	gnl_do(int const fd, char **line, t_stock *d)
 		v.i = 0;
 		while (d->buff[v.i + d->ib] != '\n' && d->ib + v.i < d->sb)
 			v.i++;
-		if (!(handle_i(&v, d, line)))
-			return (-1);
+		handle_i(&v, d, line);
+		/*		if (i)
+				{
+				tmp = *line;
+				if (!(*line = (char *)malloc(sizeof(char) * (size + i + 1))))
+				return (-1);
+				if (size)
+				ft_memcpy(*line, tmp, size);
+				ft_strncpy(*line + size, d->buff + d->ib, (size_t)i);
+				(*line)[size + i] = 0;
+				size += i;
+				d->ib += i;
+				free(tmp);
+				}
+				if (!i && ((d->buff[d->ib] == '\n') || (d->ib < d->sb)))
+				{
+				ret = (d->buff[d->ib] == '\n' || d->ib < d->sb ? 1 : 0);
+				if (d->buff[d->ib] == '\n' && !size)
+		 *line = ft_strdup("");
+		 d->ib++;
+		 }*/
 	}
 	return (v.ret);
 }
