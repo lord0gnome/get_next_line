@@ -6,12 +6,12 @@
 /*   By: guiricha <guiricha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 16:16:56 by guiricha          #+#    #+#             */
-/*   Updated: 2016/01/29 17:38:07 by guiricha         ###   ########.fr       */
+/*   Updated: 2016/06/23 15:31:02 by guiricha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "./libft/includes/libft.h"
+#include "../libft/libft.h"
 #include <stdlib.h>
 #include <unistd.h>
 
