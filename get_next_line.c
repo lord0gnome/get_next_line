@@ -6,7 +6,7 @@
 /*   By: guiricha <guiricha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 16:16:56 by guiricha          #+#    #+#             */
-/*   Updated: 2016/06/23 15:31:02 by guiricha         ###   ########.fr       */
+/*   Updated: 2016/09/30 10:26:02 by guiricha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	read_buf(int const fd, t_stock *d)
 	if (fd < 0)
 		return (-1);
 	if (d->buff[fd])
-		ft_bzero(d->buff[fd], BUFF_SIZE + 1);
+		ft_bzero(d->buff[fd], BUFF_SIZE);
 	d->i[fd] = 0;
 	d->s[fd] = read(fd, d->buff[fd], BUFF_SIZE);
 	return (d->s[fd]);
@@ -97,7 +97,8 @@ int	get_next_line(int const fd, char **line)
 	}
 	if (d->i[fd] >= d->s[fd] || !d->s[fd])
 	{
-		if (!((d)->buff[fd] = (char*)malloc(sizeof(char) * (BUFF_SIZE + 1))))
+		if (!d->buff[fd] &&
+				!((d)->buff[fd] = (char*)malloc(sizeof(char) * (BUFF_SIZE))))
 			return (-1);
 		ret = read_buf(fd, d);
 		if (ret == -1 || ret == 0)
